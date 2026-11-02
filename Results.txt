@@ -1,0 +1,12 @@
+Before ACL 100: Cork-PC pinged 192.168.10.20. Four replies, TTL 126, no loss;
+min/avg/max = 0/8/12 ms. The HTTP page opened from Dublin-PC and Cork-PC.
+After ACL 100: all four Cork-PC echo requests failed. Cork gateway 192.168.20.1
+returned Destination host unreachable. The learner reopened the HTTP page successfully.
+Counter snapshot: four denied packets and 54 permitted IP packets. The permit
+counter counts packets, not webpage visits.
+
+Extended IP access list 100
+10 deny icmp host 192.168.20.11 host 192.168.10.20 echo (4 match(es))
+20 permit ip any any (54 match(es))
+
+Earlier ping to 192.164.10.20 used a mistyped address; it was not an ACL test.

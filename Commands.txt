@@ -1,0 +1,16 @@
+Starting from the Project 8 lab: detach the old ACL on R1-dublin.
+configure terminal
+interface g0/0
+no ip access-group 10 out
+end
+
+R2-CORK: configure and apply ACL 100
+configure terminal
+access-list 100 deny icmp host 192.168.20.11 host 192.168.10.20 echo
+access-list 100 permit ip any any
+interface g0/0
+ip access-group 100 in
+end
+
+Verify on R2-CORK: show access-lists
+Save on both routers: copy running-config startup-config
